@@ -10,7 +10,12 @@ import javafx.util.Callback;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
+import java.time.LocalDate;
+
 import com.gymflow.model.Client;
+import com.gymflow.model.Abonnement;
+import com.gymflow.dao.ClientDAO;
+import com.gymflow.dao.AbonnementDAO;
 
 public class ClientController {
 
@@ -19,30 +24,41 @@ public class ClientController {
     @FXML private TextField telephoneField;
     @FXML private TextField searchField;
 
+    @FXML private ComboBox<Abonnement> abonnementComboBox;
+
     @FXML private TableView<Client> clientTable;
     @FXML private TableColumn<Client, String> nomColumn;
     @FXML private TableColumn<Client, String> prenomColumn;
     @FXML private TableColumn<Client, String> telColumn;
+    @FXML private TableColumn<Client, String> abonnementColumn;
     @FXML private TableColumn<Client, Void> actionColumn;
 
     private final ObservableList<Client> clientList = FXCollections.observableArrayList();
+    private final ClientDAO clientDAO = new ClientDAO();
+    private final AbonnementDAO abonnementDAO = new AbonnementDAO();
+
     private FilteredList<Client> filteredList;
 
     @FXML
     public void initialize() {
 
-        // Bind columns
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         telColumn.setCellValueFactory(new PropertyValueFactory<>("telephone"));
 
-        // Table fills full width
+        if (abonnementColumn != null) {
+            abonnementColumn.setCellValueFactory(new PropertyValueFactory<>("abonnementNom"));
+        }
+
         clientTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        // Setup filtered list
+        clientList.addAll(clientDAO.getAllClients());
+
+        loadAbonnements();
+
+        // 🔍 SEARCH
         filteredList = new FilteredList<>(clientList, b -> true);
 
-        // Search logic
         if (searchField != null) {
             searchField.textProperty().addListener((obs, oldVal, newVal) -> {
                 filteredList.setPredicate(client -> {
@@ -58,15 +74,41 @@ public class ClientController {
             });
         }
 
-        // Sorted list
         SortedList<Client> sortedList = new SortedList<>(filteredList);
         sortedList.comparatorProperty().bind(clientTable.comparatorProperty());
 
         clientTable.setItems(sortedList);
 
         addActionButtons();
+        System.out.println("Clients loaded: " + clientList.size());
     }
 
+    // ================= LOAD ABONNEMENTS =================
+    private void loadAbonnements() {
+
+        ObservableList<Abonnement> list =
+                FXCollections.observableArrayList(abonnementDAO.getAllAbonnements());
+
+        abonnementComboBox.setItems(list);
+
+        abonnementComboBox.setCellFactory(param -> new ListCell<>() {
+            @Override
+            protected void updateItem(Abonnement item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty || item == null ? null : item.getNom());
+            }
+        });
+
+        abonnementComboBox.setButtonCell(new ListCell<>() {
+            @Override
+            protected void updateItem(Abonnement item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty || item == null ? null : item.getNom());
+            }
+        });
+    }
+
+    // ================= ADD CLIENT =================
     @FXML
     private void handleAddClient() {
 
@@ -74,18 +116,31 @@ public class ClientController {
         String prenom = prenomField.getText();
         String tel = telephoneField.getText();
 
-        if (nom.isEmpty() || prenom.isEmpty() || tel.isEmpty()) {
+        Abonnement selected = abonnementComboBox.getValue();
+
+        if (nom.isEmpty() || prenom.isEmpty() || tel.isEmpty() || selected == null) {
             showAlert("Erreur", "Remplis tous les champs");
             return;
         }
 
-        clientList.add(new Client(nom, prenom, tel));
+        Client client = new Client();
+        client.setNom(nom);
+        client.setPrenom(prenom);
+        client.setTelephone(tel);
 
-        nomField.clear();
-        prenomField.clear();
-        telephoneField.clear();
+        client.setAbonnementId(selected.getId());
+        client.setAbonnementNom(selected.getNom());
+
+        client.setDateAbonnement(LocalDate.now());
+        client.setDateExpiration(LocalDate.now().plusDays(30));
+
+        clientDAO.addClient(client);
+        clientList.add(client);
+
+        clearFields();
     }
 
+    // ================= ACTION BUTTONS =================
     private void addActionButtons() {
 
         Callback<TableColumn<Client, Void>, TableCell<Client, Void>> cellFactory = param -> new TableCell<>() {
@@ -102,7 +157,11 @@ public class ClientController {
 
                 renewBtn.setOnAction(e -> {
                     Client client = getTableView().getItems().get(getIndex());
-                    showAlert("Succès", "Abonnement renouvelé pour " + client.getNom());
+
+                    client.setDateExpiration(LocalDate.now().plusDays(30));
+                    clientDAO.updateClient(client);
+
+                    clientTable.refresh();
                 });
 
                 changeBtn.setOnAction(e -> {
@@ -118,6 +177,20 @@ public class ClientController {
                 if (empty) {
                     setGraphic(null);
                 } else {
+                    Client client = getTableView().getItems().get(getIndex());
+
+                    long days = 0;
+
+                    if (client.getDateExpiration() != null) {
+                        days = daysLeft(client);
+                    }
+
+                    if (days <= 5) {
+                        renewBtn.setStyle("-fx-background-color: #ff2e2e; -fx-text-fill: white;");
+                    } else {
+                        renewBtn.setStyle("-fx-background-color: #00c853; -fx-text-fill: white;");
+                    }
+
                     HBox box = new HBox(8, renewBtn, changeBtn);
                     setGraphic(box);
                 }
@@ -125,6 +198,25 @@ public class ClientController {
         };
 
         actionColumn.setCellFactory(cellFactory);
+    }
+
+    // ================= UTIL =================
+    private void clearFields() {
+        nomField.clear();
+        prenomField.clear();
+        telephoneField.clear();
+        abonnementComboBox.setValue(null);
+    }
+
+    private long daysLeft(Client client) {
+        if (client.getDateExpiration() == null) {
+            return 0;
+        }
+
+        return java.time.temporal.ChronoUnit.DAYS.between(
+                LocalDate.now(),
+                client.getDateExpiration()
+        );
     }
 
     private void showAlert(String title, String msg) {

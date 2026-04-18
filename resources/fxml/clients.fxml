@@ -5,15 +5,14 @@
 
 <HBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.gymflow.controller.ClientController"
-      spacing="40"
-      alignment="CENTER"
+      spacing="30"
       styleClass="root">
 
-    <!-- LEFT: ADD CLIENT CARD -->
-    <VBox spacing="20"
+    <!-- LEFT: ADD CLIENT -->
+    <VBox spacing="15"
           styleClass="login-box"
           prefWidth="300"
-          maxWidth="300">
+          minWidth="300">
 
         <Label text="Ajouter Client" styleClass="title"/>
 
@@ -21,35 +20,42 @@
         <TextField fx:id="prenomField" promptText="Prénom" styleClass="input"/>
         <TextField fx:id="telephoneField" promptText="Téléphone" styleClass="input"/>
 
+        <!-- ✅ ADD COMBOBOX HERE -->
+        <ComboBox fx:id="abonnementComboBox"
+                  promptText="Choisir abonnement"
+                  styleClass="input"/>
+
         <Button text="Ajouter"
                 onAction="#handleAddClient"
                 styleClass="login-button"/>
     </VBox>
 
-    <!-- RIGHT: TABLE AREA -->
+    <!-- RIGHT: TABLE -->
     <VBox spacing="15"
           HBox.hgrow="ALWAYS"
-          maxWidth="1000">
+          VBox.vgrow="ALWAYS">
 
-        <HBox alignment="CENTER_LEFT" spacing="20">
-
+        <!-- HEADER -->
+        <HBox spacing="20" alignment="CENTER_LEFT">
             <Label text="Liste des Clients" styleClass="title"/>
 
             <TextField fx:id="searchField"
                        promptText="Rechercher..."
                        styleClass="input"
                        prefWidth="250"/>
-
         </HBox>
 
+        <!-- ✅ THIS IS THE IMPORTANT FIX -->
         <TableView fx:id="clientTable"
-                   VBox.vgrow="ALWAYS">
+                   VBox.vgrow="ALWAYS"
+                   prefHeight="600">
 
             <columns>
-                <TableColumn fx:id="nomColumn" text="Nom"/>
-                <TableColumn fx:id="prenomColumn" text="Prénom"/>
-                <TableColumn fx:id="telColumn" text="Téléphone"/>
-                <TableColumn fx:id="actionColumn" text="Actions"/>
+                <TableColumn fx:id="nomColumn" text="Nom" prefWidth="120"/>
+                <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="120"/>
+                <TableColumn fx:id="telColumn" text="Téléphone" prefWidth="150"/>
+                <TableColumn fx:id="abonnementColumn" text="Abonnement" prefWidth="150"/>
+                <TableColumn fx:id="actionColumn" text="Actions" prefWidth="150"/>
             </columns>
 
         </TableView>

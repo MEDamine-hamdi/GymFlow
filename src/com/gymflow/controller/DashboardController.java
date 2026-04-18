@@ -23,6 +23,18 @@ public class DashboardController {
     private StackPane contentArea;
 
     @FXML
+    private void loadAbonnements() {
+        try {
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("/fxml/abonnement.fxml")
+            );
+            contentArea.getChildren().setAll(root);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private Label welcomeLabel;
 
     @FXML
