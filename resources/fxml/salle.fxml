@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymflow.controller.SalleController"
+      spacing="30"
+      alignment="TOP_LEFT"
+      styleClass="root">
+
+    <!-- LEFT FORM -->
+    <VBox spacing="20"
+          styleClass="login-box"
+          prefWidth="300"
+          maxWidth="300">
+
+        <Label text="Ajouter Salle" styleClass="title"/>
+
+        <TextField fx:id="numField" promptText="Numéro salle" styleClass="input"/>
+        <TextField fx:id="capaciteField" promptText="Capacité" styleClass="input"/>
+
+        <Button text="Ajouter"
+                onAction="#handleAddSalle"
+                styleClass="login-button"/>
+    </VBox>
+
+    <!-- RIGHT TABLE -->
+    <VBox spacing="15"
+          HBox.hgrow="ALWAYS"
+          VBox.vgrow="ALWAYS">
+
+        <Label text="Liste des Salles" styleClass="title"/>
+
+        <TableView fx:id="table"
+                   VBox.vgrow="ALWAYS"
+                   HBox.hgrow="ALWAYS">
+
+            <columns>
+                <TableColumn fx:id="numCol" text="Numéro"/>
+                <TableColumn fx:id="capaciteCol" text="Capacité"/>
+                <TableColumn fx:id="actionCol" text="Action"/>
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+</HBox>

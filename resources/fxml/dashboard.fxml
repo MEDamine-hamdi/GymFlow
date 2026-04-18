@@ -35,7 +35,7 @@
             <Button text="🏠 Accueil" styleClass="menu-button"/>
             <Button text="👤 Clients" onAction="#loadClients" styleClass="menu-button"/>
             <Button text="🏋 Coachs" onAction="#loadCoaches" styleClass="menu-button"/>
-            <Button text="🏢 Salles" styleClass="menu-button"/>
+            <Button text="🏢 Salles" onAction="#loadSalles" styleClass="menu-button"/>
             <Button text="💳 Abonnements" onAction="#loadAbonnements" styleClass="menu-button"/>
 
             <Separator/>

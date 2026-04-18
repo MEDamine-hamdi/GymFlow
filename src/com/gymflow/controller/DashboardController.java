@@ -4,18 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import com.gymflow.model.Utilisateur;
 import com.gymflow.util.Session;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Node;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
-
-
-
 
 public class DashboardController {
 
@@ -23,20 +19,9 @@ public class DashboardController {
     private StackPane contentArea;
 
     @FXML
-    private void loadAbonnements() {
-        try {
-            Parent root = FXMLLoader.load(
-                    getClass().getResource("/fxml/abonnement.fxml")
-            );
-            contentArea.getChildren().setAll(root);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
     private Label welcomeLabel;
 
+    // ================= INIT =================
     @FXML
     public void initialize() {
         Utilisateur user = Session.getUtilisateur();
@@ -45,20 +30,56 @@ public class DashboardController {
             welcomeLabel.setText("Bienvenue " + user.getNom());
         }
     }
+
+    // ================= GENERIC LOADER =================
+    private void loadView(String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/fxml/" + fxmlFile)
+            );
+
+            Parent view = loader.load();
+
+            contentArea.getChildren().setAll(view);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ================= NAVIGATION =================
+    @FXML
+    private void loadClients() {
+        loadView("clients.fxml");
+    }
+
+    @FXML
+    private void loadCoaches() {
+        loadView("coach.fxml");
+    }
+
+    @FXML
+    private void loadAbonnements() {
+        loadView("abonnement.fxml");
+    }
+
+    @FXML
+    private void loadSalles() {
+        loadView("salle.fxml"); // 👈 for next step
+    }
+
+    // ================= LOGOUT =================
     @FXML
     private void handleLogout(ActionEvent event) {
         try {
-            // clear session
             Session.setUtilisateur(null);
 
-            // load login screen
             Parent root = FXMLLoader.load(
                     getClass().getResource("/fxml/login.fxml")
             );
 
             Scene scene = new Scene(root);
 
-            // apply CSS
             scene.getStylesheets().add(
                     getClass().getResource("/css/styles.css").toExternalForm()
             );
@@ -68,41 +89,6 @@ public class DashboardController {
 
             stage.setScene(scene);
             stage.setTitle("GymFlow - Login");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void loadClients() {
-        System.out.println("CLICK WORKS");
-
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/clients.fxml")
-            );
-
-            Node view = loader.load();
-            contentArea.getChildren().setAll(view);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
-    private void loadCoaches() {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/coach.fxml")
-            );
-
-            Parent view = loader.load();
-
-            contentArea.getChildren().clear();
-            contentArea.getChildren().add(view);
 
         } catch (Exception e) {
             e.printStackTrace();
