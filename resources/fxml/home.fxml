@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymflow.controller.HomeController"
+      spacing="20"
+      alignment="TOP_LEFT"
+      styleClass="root">
+
+    <Label text="Dashboard" styleClass="title"/>
+
+    <HBox spacing="20">
+
+        <Label fx:id="clientCount" text="Clients: 0"/>
+        <Label fx:id="activeSubs" text="Abonnements actifs: 0"/>
+        <Label fx:id="expiringCount" text="Expiring soon: 0"/>
+
+    </HBox>
+
+</VBox>

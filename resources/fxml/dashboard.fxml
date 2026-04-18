@@ -19,7 +19,6 @@
                 </image>
             </ImageView>
 
-
             <Pane HBox.hgrow="ALWAYS"/>
 
             <Button text="Logout"
@@ -30,9 +29,9 @@
 
     <!-- 🔴 LEFT SIDEBAR -->
     <left>
-        <VBox spacing="15" styleClass="side-bar" >
+        <VBox spacing="15" styleClass="side-bar">
 
-            <Button text="🏠 Accueil" styleClass="menu-button"/>
+            <Button text="🏠 Accueil" onAction="#loadHome" styleClass="menu-button"/>
             <Button text="👤 Clients" onAction="#loadClients" styleClass="menu-button"/>
             <Button text="🏋 Coachs" onAction="#loadCoaches" styleClass="menu-button"/>
             <Button text="🏢 Salles" onAction="#loadSalles" styleClass="menu-button"/>

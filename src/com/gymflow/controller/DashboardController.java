@@ -65,7 +65,11 @@ public class DashboardController {
 
     @FXML
     private void loadSalles() {
-        loadView("salle.fxml"); // 👈 for next step
+        loadView("salle.fxml");
+    }
+    @FXML
+    private void loadHome() {
+        loadView("home.fxml");
     }
 
     // ================= LOGOUT =================
