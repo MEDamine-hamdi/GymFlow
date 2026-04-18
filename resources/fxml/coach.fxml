@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymflow.controller.CoachController"
+      spacing="30"
+      alignment="TOP_LEFT"
+      styleClass="root">
+
+    <!-- LEFT FORM -->
+    <VBox spacing="20"
+          styleClass="login-box"
+          prefWidth="320"
+          maxWidth="320">
+
+        <Label text="Ajouter Coach" styleClass="title"/>
+
+        <TextField fx:id="nomField" promptText="Nom" styleClass="input"/>
+        <TextField fx:id="prenomField" promptText="Prénom" styleClass="input"/>
+        <TextField fx:id="telField" promptText="Téléphone" styleClass="input"/>
+        <TextField fx:id="expField" promptText="Année expérience" styleClass="input"/>
+
+        <ComboBox fx:id="specialiteCombo"
+                  promptText="Spécialité"
+                  styleClass="input"/>
+
+        <Button text="Ajouter"
+                onAction="#handleAddCoach"
+                styleClass="login-button"/>
+    </VBox>
+
+    <!-- RIGHT TABLE -->
+    <VBox spacing="15"
+          HBox.hgrow="ALWAYS"
+          VBox.vgrow="ALWAYS">
+
+        <Label text="Liste des Coachs" styleClass="title"/>
+
+        <TableView fx:id="table"
+                   VBox.vgrow="ALWAYS"
+                   HBox.hgrow="ALWAYS">
+
+            <columns>
+                <TableColumn fx:id="nomCol" text="Nom"/>
+                <TableColumn fx:id="prenomCol" text="Prénom"/>
+                <TableColumn fx:id="telCol" text="Téléphone"/>
+                <TableColumn fx:id="expCol" text="Exp"/>
+                <TableColumn fx:id="salaireCol" text="Salaire"/>
+                <TableColumn fx:id="specCol" text="Spécialité"/>
+                <TableColumn fx:id="actionCol" text="Action"/>
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+</HBox>

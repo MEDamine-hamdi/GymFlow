@@ -90,4 +90,22 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    private void loadCoaches() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/fxml/coach.fxml")
+            );
+
+            Parent view = loader.load();
+
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(view);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
