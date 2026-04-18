@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.gymflow.controller.LoginController"
+           stylesheets="@style.css"
+           styleClass="root">
+
+    <VBox spacing="15" alignment="CENTER" styleClass="login-box">
+
+        <ImageView fitWidth="250" preserveRatio="true">
+            <image>
+                <Image url="@/images/logo.png"/>
+            </image>
+        </ImageView>
+
+        <TextField fx:id="nomUtilisateurField"
+                   promptText="Nom utilisateur"
+                   styleClass="input"/>
+
+        <PasswordField fx:id="motDePasseField"
+                       promptText="Mot de passe"
+                       styleClass="input"/>
+
+        <Button text="Se connecter"
+                onAction="#handleLogin"
+                styleClass="login-button"/>
+
+    </VBox>
+
+</StackPane>
