@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymflow.controller.ClientController"
+      spacing="40"
+      alignment="CENTER"
+      styleClass="root">
+
+    <!-- LEFT: ADD CLIENT CARD -->
+    <VBox spacing="20"
+          styleClass="login-box"
+          prefWidth="300"
+          maxWidth="300">
+
+        <Label text="Ajouter Client" styleClass="title"/>
+
+        <TextField fx:id="nomField" promptText="Nom" styleClass="input"/>
+        <TextField fx:id="prenomField" promptText="Prénom" styleClass="input"/>
+        <TextField fx:id="telephoneField" promptText="Téléphone" styleClass="input"/>
+
+        <Button text="Ajouter"
+                onAction="#handleAddClient"
+                styleClass="login-button"/>
+    </VBox>
+
+    <!-- RIGHT: TABLE AREA -->
+    <VBox spacing="15"
+          HBox.hgrow="ALWAYS"
+          maxWidth="1000">
+
+        <HBox alignment="CENTER_LEFT" spacing="20">
+
+            <Label text="Liste des Clients" styleClass="title"/>
+
+            <TextField fx:id="searchField"
+                       promptText="Rechercher..."
+                       styleClass="input"
+                       prefWidth="250"/>
+
+        </HBox>
+
+        <TableView fx:id="clientTable"
+                   VBox.vgrow="ALWAYS">
+
+            <columns>
+                <TableColumn fx:id="nomColumn" text="Nom"/>
+                <TableColumn fx:id="prenomColumn" text="Prénom"/>
+                <TableColumn fx:id="telColumn" text="Téléphone"/>
+                <TableColumn fx:id="actionColumn" text="Actions"/>
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+</HBox>

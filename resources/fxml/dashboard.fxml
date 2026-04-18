@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.gymflow.controller.DashboardController"
+            styleClass="root">
+
+    <!-- 🔴 TOP BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15" styleClass="top-bar" prefHeight="70">
+
+            <ImageView fitHeight="60" preserveRatio="true">
+                <image>
+                    <Image url="@/images/logo.png"/>
+                </image>
+            </ImageView>
+
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Button text="Logout"
+                    onAction="#handleLogout"
+                    styleClass="login-button"/>
+        </HBox>
+    </top>
+
+    <!-- 🔴 LEFT SIDEBAR -->
+    <left>
+        <VBox spacing="15" styleClass="side-bar" >
+
+            <Button text="🏠 Accueil" styleClass="menu-button"/>
+            <Button text="👤 Clients" onAction="#loadClients" styleClass="menu-button"/>
+            <Button text="🏋 Coachs" styleClass="menu-button"/>
+            <Button text="🏢 Salles" styleClass="menu-button"/>
+
+            <Separator/>
+
+            <!-- 🤖 Chatbot Button -->
+            <Button text="🤖 Chatbot"
+                    styleClass="menu-button"/>
+
+        </VBox>
+    </left>
+
+    <!-- 🔴 CENTER CONTENT -->
+    <center>
+        <StackPane fx:id="contentArea">
+
+            <Label fx:id="welcomeLabel"
+                   text="Bienvenue"
+                   styleClass="title"/>
+
+        </StackPane>
+    </center>
+
+</BorderPane>
