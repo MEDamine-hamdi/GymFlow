@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.gymflow.controller.CoursController"
+      spacing="40"
+      styleClass="root">
+
+    <!-- LEFT FORM -->
+    <VBox spacing="15" styleClass="login-box" prefWidth="320">
+
+        <Label text="Ajouter Cours" styleClass="title"/>
+
+        <ComboBox fx:id="typeCombo" promptText="Type de cours" styleClass="input"/>
+        <ComboBox fx:id="coachCombo" promptText="Coach" styleClass="input"/>
+        <ComboBox fx:id="salleCombo" promptText="Salle" styleClass="input"/>
+
+        <TextField fx:id="nbField" promptText="Nb participants" styleClass="input"/>
+        <DatePicker fx:id="datePicker" styleClass="input"/>
+
+        <!-- ✅ ONLY ONE TIME FIELD -->
+        <TextField fx:id="heureField" promptText="Heure (ex: 18:00)" styleClass="input"/>
+
+        <Button text="Ajouter"
+                onAction="#handleAddCours"
+                styleClass="login-button"/>
+
+    </VBox>
+
+    <!-- RIGHT TABLE -->
+    <VBox spacing="15" HBox.hgrow="ALWAYS">
+
+        <Label text="Liste des Cours" styleClass="title"/>
+
+        <TableView fx:id="table" VBox.vgrow="ALWAYS">
+
+            <columns>
+                <TableColumn fx:id="typeCol" text="Spécialité"/>
+                <TableColumn fx:id="coachCol" text="Coach"/>
+                <TableColumn fx:id="salleCol" text="Salle"/>
+                <TableColumn fx:id="dateCol" text="Date"/>
+                <TableColumn fx:id="statusCol" text="Status"/>
+                <TableColumn fx:id="actionCol" text="Action"/>
+            </columns>
+
+        </TableView>
+
+    </VBox>
+
+</HBox>

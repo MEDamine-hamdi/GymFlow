@@ -72,6 +72,11 @@ public class DashboardController {
         loadView("home.fxml");
     }
 
+    @FXML
+    private void loadCours() {
+        loadView("cours.fxml");
+    }
+
     // ================= LOGOUT =================
     @FXML
     private void handleLogout(ActionEvent event) {

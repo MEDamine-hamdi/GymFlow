@@ -36,7 +36,7 @@
             <Button text="🏋 Coachs" onAction="#loadCoaches" styleClass="menu-button"/>
             <Button text="🏢 Salles" onAction="#loadSalles" styleClass="menu-button"/>
             <Button text="💳 Abonnements" onAction="#loadAbonnements" styleClass="menu-button"/>
-
+            <Button text="📅 Cours" onAction="#loadCours" styleClass="menu-button"/>
             <Separator/>
 
             <!-- 🤖 Chatbot Button -->
