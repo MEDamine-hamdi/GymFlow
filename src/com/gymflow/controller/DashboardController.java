@@ -77,6 +77,11 @@ public class DashboardController {
         loadView("cours.fxml");
     }
 
+    @FXML
+    private void loadChatbot() {
+        loadView("ChatbotView.fxml");
+    }
+
     // ================= LOGOUT =================
     @FXML
     private void handleLogout(ActionEvent event) {

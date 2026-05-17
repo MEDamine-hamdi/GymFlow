@@ -41,6 +41,7 @@
 
             <!-- 🤖 Chatbot Button -->
             <Button text="🤖 Chatbot"
+                    onAction="#loadChatbot"
                     styleClass="menu-button"/>
 
         </VBox>

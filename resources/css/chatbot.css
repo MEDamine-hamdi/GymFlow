@@ -1,0 +1,238 @@
+/* ───────────────── ROOT ───────────────── */
+.chatbot-root {
+    -fx-background-color: #0f0f0f;
+}
+
+/* ───────────────── HEADER ───────────────── */
+.chat-header {
+    -fx-background-color: #161616;
+    -fx-border-color: #ff2e2e;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 12;
+}
+
+.bot-avatar-circle {
+    -fx-fill: #ff2e2e;
+}
+
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.status-label {
+    -fx-text-fill: #888;
+    -fx-font-size: 11px;
+}
+
+.status-online {
+    -fx-fill: #00c853;
+}
+
+.status-offline {
+    -fx-fill: #ff2e2e;
+}
+
+/* ───────────────── CLEAR BUTTON ───────────────── */
+.clear-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #aaa;
+    -fx-border-color: #333;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-cursor: hand;
+}
+
+.clear-button:hover {
+    -fx-background-color: #ff2e2e;
+    -fx-text-fill: white;
+}
+
+/* ───────────────── SCROLL PANE ───────────────── */
+.chat-scroll {
+    -fx-background-color: transparent;
+    -fx-background: #0f0f0f;
+}
+
+.chat-scroll .viewport {
+    -fx-background-color: #0f0f0f;
+}
+
+.chat-scroll .scroll-bar {
+    -fx-background-color: #161616;
+}
+
+.chat-scroll .scroll-bar .thumb {
+    -fx-background-color: #2c2c2c;
+    -fx-background-radius: 10;
+}
+
+.chat-scroll .corner {
+    -fx-background-color: #0f0f0f;
+}
+
+/* ───────────────── MESSAGE AREA ───────────────── */
+.messages-container {
+    -fx-background-color: #0f0f0f;
+    -fx-padding: 20;
+}
+
+/* ───────────────── USER MESSAGE ───────────────── */
+.user-bubble {
+    -fx-background-color: #ff2e2e;
+    -fx-text-fill: white;
+
+    -fx-background-radius: 18 18 4 18;
+
+    -fx-padding: 12 16;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(255,46,46,0.35),
+            10,
+            0,
+            0,
+            2
+    );
+}
+
+/* ───────────────── BOT MESSAGE ───────────────── */
+.bot-bubble {
+    -fx-background-color: #1b1b1b;
+
+    -fx-text-fill: #f1f1f1;
+
+    -fx-background-radius: 18 18 18 4;
+
+    -fx-padding: 12 16;
+
+    -fx-font-size: 13px;
+
+    -fx-border-color: #2e2e2e;
+    -fx-border-width: 1;
+    -fx-border-radius: 18 18 18 4;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0,0,0,0.35),
+            8,
+            0,
+            0,
+            2
+    );
+}
+
+/* ───────────────── TIMESTAMP ───────────────── */
+.timestamp {
+    -fx-text-fill: #666;
+    -fx-font-size: 10px;
+    -fx-padding: 2 6;
+}
+
+/* ───────────────── TYPING AREA ───────────────── */
+.typing-row {
+    -fx-background-color: #161616;
+    -fx-border-color: #2e2e2e;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 10;
+}
+
+.typing-dots {
+    -fx-text-fill: #ff2e2e;
+    -fx-font-size: 16px;
+}
+
+.typing-text {
+    -fx-text-fill: #888;
+    -fx-font-size: 12px;
+    -fx-font-style: italic;
+}
+
+/* ───────────────── INPUT BAR ───────────────── */
+.input-bar {
+    -fx-background-color: #161616;
+    -fx-border-color: #2a2a2a;
+    -fx-border-width: 1 0 0 0;
+
+    -fx-padding: 12;
+}
+
+/* ───────────────── INPUT FIELD ───────────────── */
+.chat-input {
+
+    -fx-background-color: #1f1f1f;
+
+    -fx-text-fill: white;
+
+    -fx-prompt-text-fill: #777;
+
+    -fx-border-color: #333;
+    -fx-border-width: 1;
+
+    -fx-border-radius: 22;
+    -fx-background-radius: 22;
+
+    -fx-padding: 12 18;
+
+    -fx-font-size: 13px;
+}
+
+.chat-input:focused {
+
+    -fx-border-color: #ff2e2e;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(255,46,46,0.25),
+            10,
+            0,
+            0,
+            0
+    );
+}
+
+/* ───────────────── SEND BUTTON ───────────────── */
+.send-button {
+
+    -fx-background-color: #ff2e2e;
+
+    -fx-text-fill: white;
+
+    -fx-font-weight: bold;
+
+    -fx-font-size: 13px;
+
+    -fx-background-radius: 22;
+
+    -fx-padding: 12 22;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(255,46,46,0.4),
+            10,
+            0,
+            0,
+            2
+    );
+}
+
+.send-button:hover {
+    -fx-background-color: #ff4444;
+}
+
+.send-button:pressed {
+    -fx-background-color: #e02626;
+}
+
+.send-button:disabled {
+    -fx-background-color: #333;
+    -fx-text-fill: #777;
+    -fx-effect: none;
+}

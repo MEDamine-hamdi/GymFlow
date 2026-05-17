@@ -208,4 +208,33 @@
 .action-btn-outline:hover {
     -fx-background-color: #ff2e2e;
     -fx-text-fill: white;
+}/* ───────────────── DIALOG ───────────────── */
+
+.custom-dialog {
+    -fx-background-color: #1a1a2e;
+}
+
+.custom-dialog .header-panel {
+    -fx-background-color: #16213e;
+}
+
+.custom-dialog .content.label {
+    -fx-text-fill: white;
+}
+
+.custom-dialog .label {
+    -fx-text-fill: white;
+}
+
+.custom-dialog .button-bar .button {
+    -fx-background-color: #e94560;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-padding: 8 18 8 18;
+}
+
+.custom-dialog .button-bar .button:hover {
+    -fx-background-color: #ff5c77;
 }
